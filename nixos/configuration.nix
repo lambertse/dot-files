@@ -18,8 +18,8 @@
 
   # Bootloader
   boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+    grub.enable = true;
+    grub.device = "/dev/sda";
   };
 
   # Networking
@@ -31,13 +31,21 @@
 
     networkmanager.enable = true;  # Enable networking
   };
+  # Fonts
+  fonts.packages = with pkgs; [
+    noto-fonts
+    nerdfonts
+    font-awesome
+  ];
+
 
   # Hardware
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
   };
-
   # Time zone
   time.timeZone = "Asia/Ho_Chi_Minh";
 
@@ -82,22 +90,30 @@
     };
     hyprlock.enable = true;
     firefox.enable = true;
+    # enable Sway window manager
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
   };
 
   # System packages
   environment.systemPackages = with pkgs; [
     neovim
     wget
-    foot
-    hyprland
-    hyprsome
-    hyprlock
-    waybar
-    rofi-wayland
-    wl-clipboard
-    firefox
-    git
+    kitty 			# Terminal
+    hyprland			# Window manager
+    hyprsome			# ...
+    hyprlock			# Lock screen
+    hyprpaper			# Wallpaper
+    waybar 			# Waybar
+    rofi-wayland		# Rofi
+    wl-clipboard		# Capture
+    firefox			
+    git	
     p7zip
+    killall				
+    dmidecode 			# System's hardware info
   ];
 
   # Services
