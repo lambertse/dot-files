@@ -34,16 +34,19 @@
   # Fonts
   fonts.packages = with pkgs; [
     noto-fonts
-    nerdfonts
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     font-awesome
   ];
-
+  fonts.fontconfig.enable = true;
 
   # Hardware
   hardware = {
     bluetooth = {
       enable = true;
       powerOnBoot = true;
+    };
+    graphics = {
+      enable = true;
     };
   };
   # Time zone
@@ -79,8 +82,9 @@
     packages = with pkgs; [];
   };
 
-  # Automatic login
-  services.getty.autologinUser = "lambert";
+  services = {
+    getty.autologinUser = "lambert";
+  };
 
   # Programs
   programs = {
@@ -94,6 +98,9 @@
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+    };
+    neovim = {
+      enable = true;
     };
   };
 
@@ -111,9 +118,30 @@
     wl-clipboard		# Capture
     firefox			
     git	
+    gh				# Github cli
     p7zip
     killall				
     dmidecode 			# System's hardware info
+    lshw
+
+    #Programming
+    zip
+    unzip
+    python3
+    gcc
+    gdb
+    lua
+    #
+
+    # make color
+    unimatrix			#
+    btop			# Performance of machine
+    tigervnc			# Remote
+
+    # Neovim setup
+    ripgrep			# Search utility
+    clang-tools			# Clangd: C++ LSP
+    gnumake			# Make
   ];
 
   # Services

@@ -1,2 +1,4 @@
 
-@theme "/nix/store/8lhy719m39rpcyydvni8xjlvbc3di65h-rofi-1.7.5+wayland3/share/rofi/themes/purple.rasi"
+//@theme "/nix/store/8lhy719m39rpcyydvni8xjlvbc3di65h-rofi-1.7.5+wayland3/share/rofi/themes/purple.rasi"
+
+@theme "/nix/store/8lhy719m39rpcyydvni8xjlvbc3di65h-rofi-1.7.5+wayland3/share/rofi/themes/fullscreen-preview.rasi"
