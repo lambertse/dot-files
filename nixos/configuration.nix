@@ -8,12 +8,19 @@
   # Imports
   imports = [
     ./hardware-configuration.nix  # Include the results of the hardware scan.
+    ./pkgs-configuration.nix	  # Packages
   ];
 
   # Nix settings
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
+  ];
+  security.sudo.extraRules = [
+    {
+      users = [ "lambert" ];
+      commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }];
+    }
   ];
 
   # Bootloader
@@ -39,6 +46,7 @@
   ];
   fonts.fontconfig.enable = true;
 
+  system.copySystemConfiguration = true;
   # Hardware
   hardware = {
     bluetooth = {
@@ -78,6 +86,7 @@
   users.users.lambert = {
     isNormalUser = true;
     description = "lambert";
+
     extraGroups = [ "networkmanager" "wheel" "audio" "video" ];
     packages = with pkgs; [];
   };
@@ -86,73 +95,6 @@
     getty.autologinUser = "lambert";
   };
 
-  # Programs
-  programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-    hyprlock.enable = true;
-    firefox.enable = true;
-    # enable Sway window manager
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
-    neovim = {
-      enable = true;
-    };
-  };
-
-  # System packages
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    kitty 			# Terminal
-    hyprland			# Window manager
-    hyprsome			# ...
-    hyprlock			# Lock screen
-    hyprpaper			# Wallpaper
-    waybar 			# Waybar
-    rofi-wayland		# Rofi
-    wl-clipboard		# Capture
-    firefox			
-    git	
-    gh				# Github cli
-    p7zip
-    killall				
-    dmidecode 			# System's hardware info
-    lshw
-
-    #Programming
-    zip
-    unzip
-    python3
-    gcc
-    gdb
-    lua
-    #
-
-    # make color
-    unimatrix			#
-    btop			# Performance of machine
-    tigervnc			# Remote
-
-    # Neovim setup
-    ripgrep			# Search utility
-    clang-tools			# Clangd: C++ LSP
-    gnumake			# Make
-  ];
-
-  # Services
-  # services.openssh.enable = true;  # Enable the OpenSSH daemon.
-  # networking.firewall = {  # Firewall settings
-  #   allowedTCPPorts = [ ... ];
-  #   allowedUDPPorts = [ ... ];
-  #   enable = false;  # Or disable the firewall altogether.
-  # };
-
   # System state version
   system.stateVersion = "24.11";  # Did you read the comment?
 }
-
