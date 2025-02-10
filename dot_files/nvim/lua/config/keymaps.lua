@@ -21,6 +21,9 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
+-- Terminal
+keymap.set("n", "<C-`>", ":horizontal term<Return>", opts)
+
 -- New tab
 keymap.set("n", "te", ":tabedit")
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
@@ -55,6 +58,11 @@ keymap.set("i", "<C-v>", '<C-r>+') -- Paste in insert mode
 -- Cut to system clipboard
 keymap.set("v", "<C-x>", '"+d')  -- Cut selected text
 keymap.set("n", "<C-x>", '"+dd') -- Cut current line
+
+-- Redo
+keymap.set("i", "<C-z>", "<C-o>u", opts)  -- Insert mode: Use <C-o> to temporarily switch to normal mode and undo
+keymap.set("v", "<C-z>", "<Esc>u", opts)  -- Visual mode: Exit visual mode and undo
+keymap.set("n", "<C-z>", "u", opts)       -- Normal mode: Just undo
 
 
 -- Telescope
