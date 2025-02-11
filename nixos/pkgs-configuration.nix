@@ -31,14 +31,16 @@
           ];
         };
       };
+
   };
   nixpkgs.config.allowUnfree = true;
 
   # System packages
   environment.systemPackages = with pkgs; [
     neovim              # Text editor
-    wget                # Download files from the web
+    wget                # Download files from the Web
     kitty               # Terminal emulator
+    tmux                # Terminal windows split
     hyprland            # Window manager
     hyprsome            # Hyprland plugin manager
     hyprlock            # Lock screen utility for Hyprland
@@ -67,18 +69,28 @@
     # System monitoring & visuals
     unimatrix           # Matrix-style terminal effect
     btop                # Resource monitor (CPU, RAM, etc.)
-    tigervnc            # Remote desktop viewer
     neofetch            # System information tool
 
     # Neovim setup & development tools
     ripgrep             # Fast search tool (used in Neovim)
+    fzf
     clang-tools         # Clangd: C++ LSP and tools
     lua-language-server # Language server for Lua
     gnumake             # Build automation tool (Make)
     rust-analyzer       # Language server for Rust
-    rustc		# Rust compiler
+    rustc               # Rust compiler
+    cmake               # cmake
+    ripgrep             # Speed grep
+    tor                 # Anonymizing overlay network
+    vimPlugins.nvim-treesitter
 
-    ripgrep		# Speed grep
   ];
+  
+  services.tor = {
+     enable = true;
+     settings = {
+      HTTPTunnelPort = 9080;
+    };
+  };
 }
 

@@ -22,7 +22,7 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- Terminal
-keymap.set("n", "<C-`>", ":horizontal term<Return>", opts)
+keymap.set("n", "<C-`>", ":split | resize 20 | term<Return>:setlocal nonumber norelativenumber<Return>i", opts)
 
 -- New tab
 keymap.set("n", "te", ":tabedit")
@@ -32,10 +32,13 @@ keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
 -- Move window
-keymap.set("n", "sh", "<C-w>h")
-keymap.set("n", "sk", "<C-w>k")
-keymap.set("n", "sj", "<C-w>j")
-keymap.set("n", "sl", "<C-w>l")
+
+keymap.set("n", "s<left>", "<C-w>h")
+keymap.set("n", "s<up>", "<C-w>k")
+keymap.set("n", "s<down>", "<C-w>j")
+keymap.set("n", "s<right>", "<C-w>l")
+keymap.set("n", "sw", ":q<CR>")
+
 
 -- Resize window
 keymap.set("n", "<C-w><left>", "<C-w><")

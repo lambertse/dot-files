@@ -25,14 +25,4 @@ EOF
   hyprpaper &
 }
 
-# Main loop
-while true; do
-  # Get a random wallpaper
-  WALLPAPER=$(get_random_wallpaper)
-
-  # Update the config and reload
-  update_config "$WALLPAPER"
-
-  # Wait for the specified interval
-  sleep $INTERVAL
-done
+update_config "$(get_random_wallpaper)"

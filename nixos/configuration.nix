@@ -32,10 +32,6 @@
   # Networking
   networking = {
     hostName = "nixos";  # Define your hostname.
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    # proxy.default = "http://user:password@proxy:port/";  # Configure network proxy if necessary.
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";  # Proxy exceptions.
-
     networkmanager.enable = true;  # Enable networking
   };
   # Fonts
