@@ -83,7 +83,12 @@
     ripgrep             # Speed grep
     tor                 # Anonymizing overlay network
     vimPlugins.nvim-treesitter
-
+    nodejs_22
+    rofi-screenshot 
+    rofi
+    ffcast
+    slop
+    xclip
   ];
   
   services.tor = {

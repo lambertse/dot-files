@@ -2,11 +2,19 @@ return {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
+      vim.api.nvim_command('highlight DashboardHeader guifg=#F39939')
       require('dashboard').setup{
         theme = 'hyper',
         config = {
-          week_header = {
-          enable = true,
+          header = {
+                '',
+                '██╗      █████╗ ███╗   ███╗██████╗ ███████╗██████╗ ████████╗███████╗███████╗',
+                '██║     ██╔══██╗████╗ ████║██╔══██╗██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝',
+                '██║     ███████║██╔████╔██║██████╔╝█████╗  ██████╔╝   ██║   ███████╗█████╗  ',
+                '██║     ██╔══██║██║╚██╔╝██║██╔══██╗██╔══╝  ██╔══██╗   ██║   ╚════██║██╔══╝  ',
+                '███████╗██║  ██║██║ ╚═╝ ██║██████╔╝███████╗██║  ██║   ██║   ███████║███████╗',
+                '╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝',
+                '',
           },
           shortcut = {
             { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
@@ -25,10 +33,16 @@ return {
               key = 'e',
             },
             {
-              desc = ' dotfiles',
-              group = 'Number',
-              action = 'Telescope dotfiles',
-              key = 'd',
+              desc = ' Strings',
+              group = 'Label',
+              action = 'Telescope live_grep',
+              key = 's',
+            },
+            {
+              desc = ' Quit',
+              group = 'Constant',
+              action = 'q',
+              key = 'q',
             },
           },
         },

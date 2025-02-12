@@ -78,6 +78,8 @@
     variant = "";
   };
 
+  services.gvfs.enable = true;
+
   # Users
   users.users.lambert = {
     isNormalUser = true;
