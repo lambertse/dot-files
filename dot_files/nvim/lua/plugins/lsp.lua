@@ -6,7 +6,7 @@ return {
 
       -- Use system clangd
       lspconfig.clangd.setup({
-        cmd = { "clangd" }, -- Ensure this is the system-installed clangd
+        cmd = { "clangd", "--compile-commands-dir=./build" }, 
       })
 
       -- Use system rust-analyzer
