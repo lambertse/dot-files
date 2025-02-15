@@ -67,10 +67,15 @@ tooltip {
 }
 
 #battery {
-    background-color: #a9b665;
-    border: 2px solid #c7ab7a;
-    color: #6c782e;
+    background-color: #303536;
+    border: 2px solid #434a4c;
+    color: #d4be98;
 }
+
+#battery.charging {
+    background-color: #a9b665;
+}
+
 
 #cpu,
 #memory,

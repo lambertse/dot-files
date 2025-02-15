@@ -89,6 +89,7 @@
     ffcast
     slop
     xclip
+    lynx
   ];
   
   services.tor = {
