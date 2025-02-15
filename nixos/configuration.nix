@@ -32,8 +32,13 @@
   # Networking
   networking = {
     hostName = "nixos";  # Define your hostname.
-    networkmanager.enable = true;  # Enable networking
+    nameservers = [ "1.1.1.1" ];
   };
+  networking.networkmanager = {
+    enable = true;
+    dns = "none"; # Prevents NetworkManager from overwriting resolv.conf
+  };
+
   # Fonts
   fonts.packages = with pkgs; [
     noto-fonts

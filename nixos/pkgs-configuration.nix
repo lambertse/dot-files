@@ -90,6 +90,8 @@
     slop
     xclip
     lynx
+    luaformatter        # Lua formatter
+    openresolv         # DNS configuration tool
   ];
   
   services.tor = {
@@ -97,6 +99,10 @@
      settings = {
       HTTPTunnelPort = 9080;
     };
+  };
+  systemd.services."openresolv" = {
+    wantedBy = [ "multi-user.target" ];
+    script = ''echo "nameserver 1.1.1.1" > /etc/resolv.conf'';
   };
 }
 
