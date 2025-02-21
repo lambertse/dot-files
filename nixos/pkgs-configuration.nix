@@ -83,15 +83,18 @@
     ripgrep             # Speed grep
     tor                 # Anonymizing overlay network
     vimPlugins.nvim-treesitter
-    nodejs_22
+    nodejs_22     
     rofi-screenshot 
     rofi
     ffcast
-    slop
-    xclip
-    lynx
+    slop                # Screenshot tool
+    xclip               # Clipboard manager
+    lynx                # Text-based web browser
     luaformatter        # Lua formatter
-    openresolv         # DNS configuration tool
+    openresolv          # DNS configuration tool
+    trash-cli           # Command-line trash utility
+    bazel               # Build and test tool
+    ninja               # Build system
   ];
   
   services.tor = {

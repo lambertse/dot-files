@@ -1,5 +1,5 @@
 local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
+local opts = {noremap = true, silent = true}
 
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
@@ -11,7 +11,7 @@ keymap.set("n", "dw", 'vb"_d')
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
---p Save with root permission (not working for now)
+-- p Save with root permission (not working for now)
 vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
 
 -- Disable continuations
@@ -22,7 +22,9 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- Terminal
-keymap.set("n", "<C-`>", ":split | resize 20 | term<Return>:setlocal nonumber norelativenumber<Return>i", opts)
+keymap.set("n", "<C-`>",
+           ":split | resize 20 | term<Return>:setlocal nonumber norelativenumber<Return>i",
+           opts)
 
 -- New tab
 keymap.set("n", "te", ":tabedit")
@@ -39,6 +41,10 @@ keymap.set("n", "s<down>", "<C-w>j")
 keymap.set("n", "s<right>", "<C-w>l")
 keymap.set("n", "sw", ":q<CR>")
 
+-- Copilot keymap
+keymap.set("n", "<Leader>cc", ":Copilot<CR>", opts)
+keymap.set("n", "<Leader>ce", ":Copilot enable<CR>", opts)
+keymap.set("n", "<Leader>cd", ":Copilot disable<CR>", opts)
 
 -- Resize window
 keymap.set("n", "<C-w><left>", "<C-w><")
@@ -50,23 +56,22 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 -- Custom continuations
 
 -- Copy to system clipboard
-keymap.set("v", "<C-c>", '"+y')  -- Copy selected text
+keymap.set("v", "<C-c>", '"+y') -- Copy selected text
 keymap.set("n", "<C-c>", '"+yy') -- Copy current line
 
 -- Paste from system clipboard
-keymap.set("n", "<C-v>", '"+p')  -- Paste in normal mode
-keymap.set("v", "<C-v>", '"+p')  -- Paste in visual mode
+keymap.set("n", "<C-v>", '"+p') -- Paste in normal mode
+keymap.set("v", "<C-v>", '"+p') -- Paste in visual mode
 keymap.set("i", "<C-v>", '<C-r>+') -- Paste in insert mode
 
 -- Cut to system clipboard
-keymap.set("v", "<C-x>", '"+d')  -- Cut selected text
+keymap.set("v", "<C-x>", '"+d') -- Cut selected text
 keymap.set("n", "<C-x>", '"+dd') -- Cut current line
 
 -- Redo
-keymap.set("i", "<C-z>", "<C-o>u", opts)  -- Insert mode: Use <C-o> to temporarily switch to normal mode and undo
-keymap.set("v", "<C-z>", "<Esc>u", opts)  -- Visual mode: Exit visual mode and undo
-keymap.set("n", "<C-z>", "u", opts)       -- Normal mode: Just undo
-
+keymap.set("i", "<C-z>", "<C-o>u", opts) -- Insert mode: Use <C-o> to temporarily switch to normal mode and undo
+keymap.set("v", "<C-z>", "<Esc>u", opts) -- Visual mode: Exit visual mode and undo
+keymap.set("n", "<C-z>", "u", opts) -- Normal mode: Just undo
 
 -- Telescope
 -- t
@@ -81,8 +86,5 @@ keymap.set("n", "<space>fo", builtin.oldfiles, {})
 keymap.set("n", "<space>fb", builtin.current_buffer_fuzzy_find, {})
 keymap.set("n", "<C-f>", "/", {})
 
-keymap.set("n", "<space>en", function()
-        builtin.find_files({
-          cwd = vim.fn.stdpath("config")
-        })
-      end)
+keymap.set("n", "<space>en",
+           function() builtin.find_files({cwd = vim.fn.stdpath("config")}) end)
