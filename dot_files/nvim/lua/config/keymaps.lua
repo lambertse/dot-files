@@ -21,11 +21,6 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
--- Terminal
-keymap.set("n", "<C-`>",
-           ":split | resize 20 | term<Return>:setlocal nonumber norelativenumber<Return>i",
-           opts)
-
 -- New tab
 keymap.set("n", "te", ":tabedit")
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
