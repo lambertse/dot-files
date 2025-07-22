@@ -1,0 +1,3 @@
+[submodule "dot_files/nvim"]
+	path = dot_files/nvim
+	url = https://github.com/lambertse/nvim
