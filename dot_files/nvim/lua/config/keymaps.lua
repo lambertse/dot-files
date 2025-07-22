@@ -8,6 +8,9 @@ keymap.set("n", "-", "<C-x>")
 -- Delete a word backwards
 keymap.set("n", "dw", 'vb"_d')
 
+-- Rename with LSP support
+keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
@@ -75,11 +78,16 @@ local builtin = require('telescope.builtin')
 keymap.set("n", "<space>fz", ":Telescope<Esc>", opts)
 keymap.set("n", "<space>fh", builtin.help_tags, {})
 keymap.set("n", "<C-t>", builtin.find_files, {})
-keymap.set("n", "<space>fd", builtin.live_grep, {})
+keymap.set("n", "<space>fl", builtin.live_grep, {})
 keymap.set("n", "<space>ff", builtin.buffers, {})
 keymap.set("n", "<space>fo", builtin.oldfiles, {})
 keymap.set("n", "<space>fb", builtin.current_buffer_fuzzy_find, {})
 keymap.set("n", "<C-f>", "/", {})
+
+-- Begin: Portal jumplist manager
+keymap.set("n", "<M-Left>", "<cmd>Portal jumplist backward<cr>")
+keymap.set("n", "<M-Right>", "<cmd>Portal jumplist forward<cr>")
+-- End: Portal
 
 keymap.set("n", "<space>en",
            function() builtin.find_files({cwd = vim.fn.stdpath("config")}) end)

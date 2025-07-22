@@ -13,7 +13,16 @@ return {
             lspconfig.rust_analyzer.setup({
                 cmd = {"rust-analyzer"} -- Ensure this is the system-installed rust-analyzer
             })
+            lspconfig.gopls.setup {
+                settings = {
+                    gopls = {
+                        analyses = {unusedparams = true},
+                        staticcheck = true
+                    }
+                }
+            }
         end
     }
 }
+
 
