@@ -1,4 +1,4 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+#  export PATH=$HOME/Library/Python/3.9/bin:$PATH Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -9,20 +9,43 @@ fi
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export ZSH="$HOME/.oh-my-zsh"
-export ZSH_CUSTOM=$ZSH/custom/
- 
-# Source
-source $HOME/.bash_aliases
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_HOME="$HOME/Library/Android/sdk/"
+export ANDROID_NDK_HOME="$HOME/Library/Android/sdk/ndk/4.8.0"
+export NDK_PATH="$HOME/Library/Android/sdk/ndk/4.8.0"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current" # Temporary change to debug toolchain
 
-# ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/src/config.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=22'
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/build-tools/29.0.2:$PATH
+export PATH=$PATH:$HOME/Library/Android/sdk/cmake/3.10.2.4988404/bin
+export PATH=$PATH:$HOME/Library/Android/sdk/ndk/4.8.0/toolchains/llvm/prebuilt/darwin-x86_64/bin
+export PATH=$HOME/Library/Python/3.9/bin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH='/usr/local/mysql/bin':$PATH
+
+export artifactory_contextUrl=http://ci.intranet.v-key.com/artifactory/libs-snapshot-local
+export artifactory_user=
+export artifactory_password=
+
+
+# Debug toolchain
+# export PATH="/opt/homebrew/opt/openjdk@21/bin":$PATH
+# export JAVA_HOME="/opt/homebrew/opt/openjdk@21/"
+#
+
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -84,9 +107,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+#
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00FF66,bg=none,bold"
+
 plugins=(
-  git
-  zsh-autosuggestions
+    git
+    zsh-autosuggestions
+    fzf-dir-navigator
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -119,7 +146,17 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+alias nvim="$HOME/bin/nvim-macos-arm64/bin/nvim"
+
+# Load custom aliases if file exists
+if [ -f ~/.zsh_aliases ]; then
+    source ~/.zsh_aliases
+fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
