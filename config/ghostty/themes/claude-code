@@ -1,0 +1,28 @@
+# Claude Code — warm terracotta dark theme
+
+background = #1a1815
+foreground = #e8e6e3
+cursor-color = #C15F3C
+cursor-text = #1a1815
+selection-background = #3a2820
+selection-foreground = #e8e6e3
+
+# Standard colors (0-7)
+palette = 0=#1a1815
+palette = 1=#E06C75
+palette = 2=#98C379
+palette = 3=#D4A843
+palette = 4=#61AFEF
+palette = 5=#C678DD
+palette = 6=#56B6C2
+palette = 7=#e8e6e3
+
+# Bright colors (8-15)
+palette = 8=#4a4540
+palette = 9=#F08C95
+palette = 10=#B5D89E
+palette = 11=#E6C355
+palette = 12=#7EC4FF
+palette = 13=#D9A0EC
+palette = 14=#79D0DA
+palette = 15=#f5f0eb

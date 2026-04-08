@@ -4,10 +4,6 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
 # Path to your Oh My Zsh installation.
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
@@ -19,7 +15,6 @@ export ANDROID_NDK_HOME="$HOME/Library/Android/sdk/ndk/4.8.0"
 export NDK_PATH="$HOME/Library/Android/sdk/ndk/4.8.0"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current" # Temporary change to debug toolchain
-
 export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
 export PATH=$ANDROID_HOME/build-tools/29.0.2:$PATH
 export PATH=$PATH:$HOME/Library/Android/sdk/cmake/3.10.2.4988404/bin
@@ -28,128 +23,56 @@ export PATH=$HOME/Library/Python/3.9/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH='/usr/local/mysql/bin':$PATH
-
+export PATH='/usr/local/go/bin':$PATH
 export artifactory_contextUrl=http://ci.intranet.v-key.com/artifactory/libs-snapshot-local
 export artifactory_user=
 export artifactory_password=
-
-
-# Debug toolchain
-# export PATH="/opt/homebrew/opt/openjdk@21/bin":$PATH
-# export JAVA_HOME="/opt/homebrew/opt/openjdk@21/"
-#
-
-
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ── Claude Code Color Scheme ────────────────────────────
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# zsh-autosuggestions: muted tone matching Neovim line numbers
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6b655f"
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# LS_COLORS: directories in Claude orange, files in warm tones
+export LS_COLORS="di=1;38;2;193;95;60:ln=38;2;86;182;194:ex=38;2;152;195;121:fi=38;2;196;165;132:*.md=38;2;97;175;239:*.json=38;2;212;168;67:*.yaml=38;2;212;168;67:*.yml=38;2;212;168;67:*.toml=38;2;212;168;67:*.lua=38;2;86;182;194:*.py=38;2;212;168;67:*.js=38;2;212;168;67:*.ts=38;2;97;175;239:*.rs=38;2;230;125;34:*.go=38;2;86;182;194:*.sh=38;2;152;195;121:*.css=38;2;198;120;221:*.html=38;2;230;125;34:*.jpg=38;2;224;108;117:*.png=38;2;224;108;117:*.gif=38;2;224;108;117:*.svg=38;2;224;108;117:*.zip=38;2;224;108;154:*.tar=38;2;224;108;154:*.gz=38;2;224;108;154"
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# fzf: warm dark background with Claude orange highlights
+export FZF_DEFAULT_OPTS="
+  --color=bg+:#242019,bg:#1a1815,fg:#e8e6e3,fg+:#f5f0eb
+  --color=hl:#C15F3C,hl+:#E67D22,info:#D4A843,marker:#98C379
+  --color=prompt:#C15F3C,spinner:#C678DD,pointer:#C15F3C,header:#61AFEF
+  --color=border:#3a352e,label:#c4a584,query:#e8e6e3
+  --border=rounded
+  --prompt='❯ '
+  --pointer='▶'
+  --marker='✓'
+"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+# Completion menu uses LS_COLORS + Claude orange headers
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format $'\e[38;2;193;95;60;1m── %d ──\e[0m'
+zstyle ':completion:*:messages' format $'\e[38;2;196;165;132m%d\e[0m'
+zstyle ':completion:*:warnings' format $'\e[38;2;224;108;117mNo matches found\e[0m'
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# Git prompt indicators (Oh My Zsh git plugin)
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$'\e[38;2;193;95;60m'%}(%{$'\e[38;2;230;125;34m'%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$'\e[38;2;193;95;60m'%})%{$'\e[0m'%} "
+ZSH_THEME_GIT_PROMPT_DIRTY=" %{$'\e[38;2;224;108;117m'%}✗"
+ZSH_THEME_GIT_PROMPT_CLEAN=" %{$'\e[38;2;152;195;121m'%}✓"
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-#
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00FF66,bg=none,bold"
-
+# ── End Claude Code Colors ──────────────────────────────
 plugins=(
     git
     zsh-autosuggestions
     fzf-dir-navigator
 )
-
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias nvim="$HOME/bin/nvim-macos-arm64/bin/nvim"
+# Load custom aliases if file exists
+#
 
 # Load custom aliases if file exists
 if [ -f ~/.zsh_aliases ]; then
@@ -160,3 +83,9 @@ fi
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+
+export CLICOLOR=1
+# BSD LSCOLORS: directories=Claude orange bold, symlinks=cyan, exec=green
+#               ex Gx cx dx bx eg ed ab ag ac ad
+export LSCOLORS="DxGxcxdxCxegedabagacad"
+

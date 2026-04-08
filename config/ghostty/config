@@ -1,10 +1,11 @@
-theme = Solarized Dark Patched
+theme = claude-code
 
 background-opacity = 0.9
 background-blur-radius = 20
 background = #031219
 
 font-family = "PlemolJP Console NF"
+font-size = 15
 
 cursor-style = block
 cursor-style-blink = true
@@ -14,3 +15,10 @@ cursor-style-blink = true
 macos-option-as-alt = left
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+
+
+window-width  = 200  
+window-height = 45 
+
+window-position-x = 00
+window-position-y = 40
