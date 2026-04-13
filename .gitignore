@@ -1,4 +1,5 @@
 .git_key
 .config/tmux/.tmux/plugins/
+!.config/tmux/.tmux/plugins/tpm/
 .DS_Store
 
